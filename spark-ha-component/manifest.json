@@ -4,5 +4,6 @@
   "version": "1.0",
   "dependencies": [],
   "codeowners": ["@mememachine420x"],
+  "platforms": ["tts"],
   "requirements": []
 }
