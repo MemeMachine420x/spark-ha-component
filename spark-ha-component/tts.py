@@ -15,7 +15,7 @@ class SparkTTSEntity(TextToSpeechEntity, Entity):
 
     @property
     def supported_languages(self):
-        return ["en-US"]  # Adjust if you support more
+        return ["en-US"]  # Add more if needed
 
     async def async_get_tts_audio(self, message, language, options=None):
         url = "http://192.168.50.32:5000/tts"
@@ -30,4 +30,7 @@ class SparkTTSEntity(TextToSpeechEntity, Entity):
         except Exception as e:
             _LOGGER.error("Error calling Spark TTS: %s", e)
             return None, None
+
+async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
+    async_add_entities([SparkTTSEntity(hass)])
 
