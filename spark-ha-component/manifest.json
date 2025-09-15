@@ -1,0 +1,8 @@
+{
+  "domain": "spark_tts",
+  "name": "Spark TTS",
+  "version": "1.0",
+  "dependencies": [],
+  "codeowners": ["@mememachine420x"],
+  "requirements": []
+}

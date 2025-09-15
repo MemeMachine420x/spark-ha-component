@@ -1,0 +1,16 @@
+speak:
+  description: "Send text to Spark-TTS and play the audio"
+  fields:
+    message:
+      description: "Text to speak"
+      example: "Welcome home!"
+      required: true
+      selector:
+        text:
+    entity_id:
+      description: "Media player to play the audio"
+      example: "media_player.living_room"
+      required: true
+      selector:
+        entity:
+          domain: media_player
