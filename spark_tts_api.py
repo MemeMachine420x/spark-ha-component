@@ -7,7 +7,12 @@ app = Flask(__name__)
 def tts():
     text = request.json.get('text')
     output_path = 'output.wav'
-    subprocess.run(['python', './spark/cli/inference.py', '--text', text, '--output', output_path])
+    subprocess.run([
+    'python', './spark/cli/inference.py',
+    '--text', text,
+    '--output', output_path
+], env={**os.environ, 'PYTHONPATH': '/home/rangernet/spark-ha-component'})
+
     return send_file(output_path, mimetype='audio/wav')
 
 app.run(host='0.0.0.0', port=5000)
