@@ -26,7 +26,7 @@ class SparkTTSEntity(TextToSpeechEntity, Entity):
                         _LOGGER.error("Spark TTS server error: %s", response.status)
                         return None, None
                     audio_bytes = await response.read()
-                    return "mp3", audio_bytes
+                    return "wav", audio_bytes
         except Exception as e:
             _LOGGER.error("Error calling Spark TTS: %s", e)
             return None, None
