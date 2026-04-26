@@ -1,21 +1,22 @@
 import aiohttp
 import logging
-from homeassistant.components.tts import TextToSpeechEntity
-from homeassistant.helpers.entity import Entity
+from homeassistant.components.tts import Provider
 
 _LOGGER = logging.getLogger(__name__)
 
-class SparkTTSEntity(TextToSpeechEntity, Entity):
-    def __init__(self, hass):
-        self._name = "Spark TTS"
 
+def get_engine(hass, config, discovery_info=None):
+    return SparkTTSProvider()
+
+
+class SparkTTSProvider(Provider):
     @property
     def name(self):
-        return self._name
+        return "Spark TTS"
 
     @property
     def supported_languages(self):
-        return ["en-US"]  # Add more if needed
+        return ["en-US"]
 
     @property
     def default_language(self):
@@ -34,7 +35,3 @@ class SparkTTSEntity(TextToSpeechEntity, Entity):
         except Exception as e:
             _LOGGER.error("Error calling Spark TTS: %s", e)
             return None, None
-
-async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
-    async_add_entities([SparkTTSEntity(hass)])
-
