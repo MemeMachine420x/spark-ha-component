@@ -23,7 +23,7 @@ class SparkTTSProvider(Provider):
         return "en-US"
 
     async def async_get_tts_audio(self, message, language, options=None):
-        url = "http://192.168.50.32:5000/tts"
+        url = "http://192.168.100.74:5000/tts"
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.post(url, json={"text": message}) as response:
