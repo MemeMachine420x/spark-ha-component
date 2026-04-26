@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, Response
 from gradio_client import Client, handle_file
 import subprocess
 import os
@@ -19,7 +19,11 @@ def tts():
 		api_name="/voice_clone"
 )
     print(result)
-    return send_file(result, mimetype='audio/wav')
+    proc = subprocess.run(
+        ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-i', result, '-f', 'mp3', 'pipe:1'],
+        capture_output=True
+    )
+    return Response(proc.stdout, mimetype='audio/mpeg')
 
 @app.route('/voice', methods=['POST'])
 def voice():
